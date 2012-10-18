@@ -1,0 +1,25 @@
+A very simple javascript kata showing jasmine and jquery in action
+
+To run the tests you first need to install phantomJS
+
+Ubuntu `apt-get install phantomjs`
+OSX `brew install phantomjs`
+
+Next run npm install to pull down the jasmine-phantom-node module
+
+npm install
+
+Now you can run the tests from the root project directory
+
+node node_modules/jasmine-phantom-node/bin/jasmine-phantom-node ember/static/script/tests
+
+The jasmine spec file can be found ember/static/script/tests/people.spec.js
+The production javascript file under test can be found at ember/static/script/app/person.js
+
+** ** ** ** ** ** ** **
+
+Since this app does have a full django backend, you can spin it up like so
+
+1. pip install -r requirements.txt
+2. python manage.py syncdb
+3. python manage.py runserver

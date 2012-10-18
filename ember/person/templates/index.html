@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<title>Users</title>
+<link href="{{ STATIC_URL }}css/default.css" rel="stylesheet" type="text/css">
+<body>
+
+<form action="/people" method="post">
+  <input type="text" autofocus placeholder="username" name="username" id="username" />
+  <input type="submit" value="add user" id="submit" name="submit" onclick="person.addPerson(); return false;" />
+</form>
+
+<table id="people" style="width: 200px;">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Username</td>
+      <td></td>
+  </tr>
+  </thead>
+  <tbody />
+</table>
+
+<span id="errors"></span>
+
+<script src="{{ STATIC_URL }}script/vendor/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}script/app/person.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var tbody = $('#people > tbody');
+    var username = $('#username');
+    var errors = $('#errors');
+    var url = 'http://localhost:8000/people';
+    var params = {tbody: tbody, url: url, username: username, errors: errors};
+
+    window.person = new Person(params);
+    person.findAll();
+  });
+</script>
+</body>
+</html>

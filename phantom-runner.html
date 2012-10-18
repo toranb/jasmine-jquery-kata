@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>javascript unit tests</title>
+<link href="/static/jasmine/jasmine.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/static/jasmine/jasmine.js"></script>
+<script type="text/javascript" src="/static/jasmine/jasmine-html.js"></script>
+<script type="text/javascript" src="/static/script/vendor/jquery-1.7.2.js"></script>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+var require = function(script) {
+  document.write('<script src="http://localhost:8091/' + script + '"></' + 'script>');
+}
+</script>
+<script type="text/javascript">
+//phantomJS is missing the bind implementation for some odd reason
+//http://code.google.com/p/phantomjs/issues/detail?id=522#makechanges
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function (oThis) {
+    if (typeof this !== "function") {
+      // closest thing possible to the ECMAScript 5 internal IsCallable function
+      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+    var aArgs = Array.prototype.slice.call(arguments, 1),
+    fToBind = this, 
+    fNOP = function () {},
+    fBound = function () {
+      return fToBind.apply(this instanceof fNOP && oThis
+                           ? this
+                           : oThis,
+                           aArgs.concat(Array.prototype.slice.call(arguments)));
+    };
+
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
+
+    return fBound;
+  };
+}
+</script>
