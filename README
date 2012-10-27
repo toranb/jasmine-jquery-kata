@@ -23,3 +23,20 @@ Since this app does have a full django backend, you can spin it up like so
 1. pip install -r requirements.txt
 2. python manage.py syncdb
 3. python manage.py runserver
+
+** update for anyone having issues with PhantomJS 1.7 on OSX **
+
+If you installed this using brew on OSX here is one quick way to get phantomJS 1.6.1
+
+1.) first see what version you have installed
+
+phantomjs --version
+
+2.) If you see something like 1.7 you will need to remove it and pull down 1.6.1
+
+brew update
+cd `brew --prefix`
+git checkout 6b8d25f Library/Formula/phantomjs.rb
+brew switch phantomjs 1.6.1
+brew unlink phantomjs
+brew install phantomjs
