@@ -1,2 +1,2 @@
 Django
-djangorestframework
+djangorestframework==0.4.0
